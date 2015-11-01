@@ -1,5 +1,9 @@
 var express = require('express')
-  , app = express();
+  , app = express()
+  , mongo = require('mongodb');
+
+var db = 
+
 
 
 
