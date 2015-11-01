@@ -1,0 +1,12 @@
+doctype html
+html
+	head
+		title Longo A MongoDB App
+body
+	if people.length > 0
+		ul
+			each person in people
+				li
+					h2= person.name + " - " + person.job
+	else
+		p there are no person 
