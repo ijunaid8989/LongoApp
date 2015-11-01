@@ -1,0 +1,14 @@
+{
+  "name": "longo",
+  "version": "0.0.0",
+  "description": "This is Longo App to work with MongoDB",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Junaid Farooq",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.13.3"
+  }
+}
