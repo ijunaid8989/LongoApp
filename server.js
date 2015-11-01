@@ -1,8 +1,10 @@
 var express = require('express')
   , app = express()
+  , http = require('http')
   , Mongolian = require('mongolian')
   , bodyParser = require('body-parser');
 
+var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 var server = new Mongolian
   ,	db = server.db('longo')
@@ -11,9 +13,6 @@ var server = new Mongolian
 
 
 app.use(bodyParser.json());
-//var people = db.collection('people');
-
-
 
 app.set('view engine', 'jade');
 
@@ -24,8 +23,14 @@ app.get("/",function(req,res){
 	});
 });
 
-app.post('/',function(req,res){
-	console.log(req.body);
+app.post("/",urlencodedParser,function(req,res){
+	people.insert({
+		name : req.body.name,
+		job : req.body.job
+	}, function(err,doc){
+		res.redirect('/');
+	});
 });
 
-app.listen(3000);
+
+http.createServer(app).listen(3000);
