@@ -10,7 +10,7 @@ var server = new Mongolian
   ,	db = server.db('longo')
   , people = db.collection('people');
 
-
+var ObjectId =  Mongolian.ObjectId;
 
 app.use(bodyParser.json());
 
@@ -32,5 +32,11 @@ app.post("/",urlencodedParser,function(req,res){
 	});
 });
 
+
+app.get("/delete/:id", urlencodedParser ,function(req,res){
+	people.remove({_id: new ObjectId(req.params.id)}, function(err){
+		res.redirect('/');
+	});
+});
 
 http.createServer(app).listen(3000);
