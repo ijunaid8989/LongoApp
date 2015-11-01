@@ -32,6 +32,20 @@ app.post("/",urlencodedParser,function(req,res){
 	});
 });
 
+app.get("/update/:id", urlencodedParser , function(req,res){
+	people.findOne({_id: new ObjectId(req.params.id)}, function(err,doc){
+		res.render("update",{person: doc});
+	})
+});
+
+app.post("/update/:id", urlencodedParser,function(req,res){
+	people.update({ _id: new ObjectId(req.params.id)},{
+		name : req.body.name,
+		job : req.body.job
+	}, function(err,item){
+		res.redirect('/');
+	});
+});
 
 app.get("/delete/:id", urlencodedParser ,function(req,res){
 	people.remove({_id: new ObjectId(req.params.id)}, function(err){

@@ -1,0 +1,11 @@
+doctype html
+html
+	head
+		title Longo A MongoDB App
+body
+	form(method="POST")
+		p name
+		input(type="text",name="name",value="#{person.name}")
+		p job
+		input(type="text",name="job",value="#{person.job}")
+		p: button Add
