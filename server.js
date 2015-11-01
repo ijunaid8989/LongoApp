@@ -1,29 +1,27 @@
 var express = require('express')
   , app = express()
-  , MongoClient = require('mongodb').MongoClient
+  , Mongolian = require('mongolian')
   , bodyParser = require('body-parser');
 
 
+var server = new Mongolian
+  ,	db = server.db('longo')
+  , people = db.collection('people');
+
+
+
 app.use(bodyParser.json());
-
-var url = 'mongodb://localhost:27017/longo';
-
-var people;
-
-MongoClient.connect(url, function(err, db) {
-	people = db.collection('people');
-  	console.log("Connected correctly to server");
-});
-
 //var people = db.collection('people');
 
 
 
-app.set('view engine', 'ejs')
+app.set('view engine', 'ejs');
 
 
 app.get("/",function(req,res){
-	res.render('index');
+	people.find().toArray(function(err,docs){
+		res.render('index', { people : docs });
+	});
 });
 
 app.listen(3000);
