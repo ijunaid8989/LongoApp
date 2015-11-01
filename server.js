@@ -24,4 +24,8 @@ app.get("/",function(req,res){
 	});
 });
 
+app.post('/',function(req,res){
+	console.log(req.body);
+});
+
 app.listen(3000);
