@@ -18,6 +18,8 @@ app.set('view engine', 'jade');
 app.use(express.static(__dirname + '/public'));
 
 
+// Defaut Route
+
 app.get("/",function(req,res){
 	people.find().toArray(function(err,docs){
 		res.render('index', { people : docs });
@@ -33,12 +35,13 @@ app.post("/",urlencodedParser,function(req,res){
 	});
 });
 
+// Update Route
+
 app.get("/update/:id", urlencodedParser , function(req,res){
 	people.findOne({_id: new ObjectId(req.params.id)}, function(err,doc){
 		res.render("update",{person: doc});
 	})
 });
-
 app.post("/update/:id", urlencodedParser,function(req,res){
 	people.update({ _id: new ObjectId(req.params.id)},{
 		name : req.body.name,
@@ -47,6 +50,8 @@ app.post("/update/:id", urlencodedParser,function(req,res){
 		res.redirect('/');
 	});
 });
+
+// Delet Route
 
 app.get("/delete/:id", urlencodedParser ,function(req,res){
 	people.remove({_id: new ObjectId(req.params.id)}, function(err){
