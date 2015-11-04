@@ -2,10 +2,18 @@ doctype html
 html
 	head
 		title Longo A MongoDB App
+		link(rel="stylesheet", href="/css/bt.css")
 body
-	form(method="POST")
-		p name
-		input(type="text",name="name",value="#{person.name}")
-		p job
-		input(type="text",name="job",value="#{person.job}")
-		p: button Add
+	.container
+		h1 User Database
+	.container
+		.form-group
+			form(method="POST")
+				.form-group
+					label.control-label Name 
+					input(type="text",name="name",class="form-control",value="#{person.name}")
+				.form-group
+					label.control-label Job
+					input(type="text",name="job",class="form-control",value="#{person.job}")
+				.form-group
+					p: button.btn.btn-primary Add

@@ -2,22 +2,39 @@ doctype html
 html
 	head
 		title Longo A MongoDB App
+		link(rel="stylesheet", href="css/bt.css")
 body
-	form(method="POST")
-		p name
-		input(type="text",name="name")
-		p job
-		input(type="text",name="job")
-		p: button Add
+	.container
+		h1 User Database
+	.container
+		.form-group
+			form(method="POST")
+				.form-group
+					label.control-label Name 
+					input(type="text",name="name",class="form-control")
+				.form-group
+					label.control-label Job
+					input(type="text",name="job",class="form-control")
+				.form-group
+					p: button.btn.btn-primary Add
 hr
-
-if people.length > 0
-	ul
-		each person in people
-			li
-				h2= person.name + " - " + person.job
-				p
-					a(href="/update/#{person._id}") Update |
-					a(href="/delete/#{person._id}") Delete
-else
-	p there are no person
+.container
+	if people.length > 0
+		table.table
+			thead
+				tr
+					th Name
+					th Job
+					th Update
+					th Delete
+			tbody
+				each person in people
+					tr
+						td= person.name
+						td= person.job
+						td
+							a(href="/update/#{person._id}") Update
+						td
+							a(href="/delete/#{person._id}") Delete
+	else
+		p there are no person

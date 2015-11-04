@@ -15,6 +15,7 @@ var ObjectId =  Mongolian.ObjectId;
 app.use(bodyParser.json());
 
 app.set('view engine', 'jade');
+app.use(express.static(__dirname + '/public'));
 
 
 app.get("/",function(req,res){
